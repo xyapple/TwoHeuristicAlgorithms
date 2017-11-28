@@ -1,11 +1,12 @@
 /** This is the CS526 finall project
  *
  * Design and Implement two Heuristic Algorithms
+ * Author: Yin Deascentis
  *
  * Reference:
  * https://www.ibm.com/developerworks/library/j-ai-search/
  * https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
- *  https://github.com/kizzlebot/Computer-Science-II/blob/master/assignment/agn1a/Graph.java
+ * https://github.com/kizzlebot/Computer-Science-II/blob/master/assignment/agn1a/Graph.java
  */
 
 

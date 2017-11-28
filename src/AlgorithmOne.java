@@ -1,3 +1,14 @@
+/** This is the CS526 finall project
+ *
+ * Design and Implement two Heuristic Algorithms
+ * Author: Yin Deascentis
+ *
+ * Reference:
+ * https://www.ibm.com/developerworks/library/j-ai-search/
+ * https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
+ * https://github.com/kizzlebot/Computer-Science-II/blob/master/assignment/agn1a/Graph.java
+ */
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -58,7 +69,7 @@ public class AlgorithmOne extends adjacencyGraph{
      */
     public void getDistance(String vertex) {
         //this set stores the shortest distance of the vertex
-        String set = getShortestSetAlgTwo(vertex);
+        String vertexSet = getShortestSetAlgTwo(vertex);
         
         // vertex requested was "Z"
         if (vertex.equals("Z")){
@@ -74,7 +85,7 @@ public class AlgorithmOne extends adjacencyGraph{
         // handle track back
         //Implements backtracking as a way to avoid dead paths.
         // if returned set is null (dead end) back track
-        else if (set == null && !vertex.equals("Z")){
+        else if (vertexSet == null && !vertex.equals("Z")){
             
             // remove last added node from the final path
             this.pathWithBackTrack.remove(lastVertexToAdd);
@@ -93,10 +104,10 @@ public class AlgorithmOne extends adjacencyGraph{
         else {
             
             // record the complete set
-            finalVertexSet = set;
+            finalVertexSet = vertexSet;
             
             // record only the last node
-            char currentSet[] = set.toCharArray();
+            char currentSet[] = vertexSet.toCharArray();
             lastVertexToAdd = Character.toString(currentSet[1]);
             
             
@@ -126,7 +137,7 @@ public class AlgorithmOne extends adjacencyGraph{
             
             
             // add new value to the final distance
-            shortestDistance += inputMap.get(set);
+            shortestDistance += inputMap.get(vertexSet);
             
         }//end of else
         
