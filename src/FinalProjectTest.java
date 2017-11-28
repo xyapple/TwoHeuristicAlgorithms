@@ -6,16 +6,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FinalProjectTest {
-    
+    //user input
     private static Scanner input = new Scanner(System.in);
-    //private static Scanner scanner = new Scanner(System.in);
-    //private static String inputNode = scanner.nextLine();
-    
     //arraylist to store user input
     private static ArrayList<String> inputVertex = new ArrayList<>();
     private static HashMap <String, Integer> distance = new HashMap<> ();
     private static HashMap <String, Integer> inputMap = new HashMap<> ();
     private static String[][] matrix = null;
+    
     static int lenghtOfArray = 0;
     static int widthOfArray = -1;
     
@@ -137,14 +135,10 @@ public class FinalProjectTest {
        ArrayList<File> files = new ArrayList<>();
        
         // editable fields
-        
         String directDistanceFile = "direct_distance.txt";
         String graphInputFile = "graph_input.txt";
-
         
         // end of editable fields
-        
-        
         File file1 = new File(directDistanceFile);
         File file2 = new File(graphInputFile);
         files.add(file1);
@@ -153,16 +147,14 @@ public class FinalProjectTest {
 
         for (File file: files){
             try {
-                
                 // store direct distances in a hashmap
                 if (file.toString().contains("distance")){
                     
-                    //FileReader fileReader = new FileReader(dataPath.toString() + "/" + file);
-                    FileReader fileReader = new FileReader(file);
-                    BufferedReader reader = new BufferedReader(fileReader);
+                    FileReader fr = new FileReader(file);
+                    BufferedReader br = new BufferedReader(fr);
                     String line;
                     
-                    while ((line = reader.readLine()) != null) {
+                    while ((line = br.readLine()) != null) {
                         
                         StringBuilder num = new StringBuilder();
                         StringBuilder str = new StringBuilder();
@@ -183,9 +175,7 @@ public class FinalProjectTest {
                         
                     }
                     
-                    reader.close(); // close the reader
-                    
-                    //System.out.println(distance);
+                    br.close(); // close the reader
                     
                 }
                 

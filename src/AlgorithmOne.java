@@ -13,7 +13,7 @@ public class AlgorithmOne extends adjacencyGraph{
         this.vertex = vertex;
         this.distance = distance;
         this.inputMap = inputMap;
-        System.out.println("~~ Algorithm #1 ~~");
+        System.out.println("=========== Algorithm 1 ===========");
     }
     
     /**
@@ -22,7 +22,7 @@ public class AlgorithmOne extends adjacencyGraph{
      * eg:A: dd(A) = 380; B: dd(C) = 366, I: dd(I) = 193, K: dd(K) = 176.
      *  then K is selected
      */
-    private String getShortestSet (String vertex){
+    public String getShortestSetAlgTwo (String vertex){
         //this adjacent list is the one that get from the getAdjacentSet() method
         ArrayList <String> adjacent= getAdjacentSet(vertex);
         
@@ -58,7 +58,7 @@ public class AlgorithmOne extends adjacencyGraph{
      */
     public void getDistance(String vertex) {
         //this set stores the shortest distance of the vertex
-        String set = getShortestSet(vertex);
+        String set = getShortestSetAlgTwo(vertex);
         
         // vertex requested was "Z"
         if (vertex.equals("Z")){
