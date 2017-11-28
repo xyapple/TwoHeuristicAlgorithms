@@ -7,13 +7,10 @@ import java.util.HashMap;
 
 public class FinalProjectTest {
     
+    private static Scanner input = new Scanner(System.in);
+    //private static Scanner scanner = new Scanner(System.in);
+    //private static String inputNode = scanner.nextLine();
     
-    //Scan user input
-    private static Scanner scanner = new Scanner(System.in);
-    
-    
-    // Data
-
     //arraylist to store user input
     private static ArrayList<String> inputVertex = new ArrayList<>();
     private static HashMap <String, Integer> distance = new HashMap<> ();
@@ -23,7 +20,7 @@ public class FinalProjectTest {
     static int widthOfArray = -1;
     
     public static void main(String[] args){
- 
+
         // Load necessary data
         // All data files to be found in the 'data' folder
         processFileData();
@@ -33,12 +30,9 @@ public class FinalProjectTest {
                     + " calculations. Once files have been added, please restart the"
                     + " program. Thank you.");
         }
-    
-/*        //Greeting
-        System.out.println("\n\tWelcome to the Path Finding System!\n");
-        System.out.println("To exit the system please enter 'exit' anywhere.\n");*/
-        displayUserMenu();
-  
+        
+        
+   displayUserMenu();
         
         
     
@@ -56,44 +50,37 @@ public class FinalProjectTest {
      */
     //Display user menu for user to choose
     public static void displayUserMenu(){
-    
-    
+        
         // user choice for menu
         int userChoice = 0;
         System.out.println("1. Please enter a starting node: ");
         System.out.println("2. Exit");
-        String userInput = null;
-        userInput.nextline();
-       
-        do {
         
-
-            // check valid selection
-            if (userChoice < 1 || userChoice > 2) {
-                System.out.println("Please enter number from 1 to 2.");
-            
-            }
-    
-            if (userInput.hasNextInt()) {
-                userChoice = userInput.nextInt();
+        
+        do {
+            if (input.hasNextInt()) {
+                userChoice = input.nextInt();
                 // In order for user not to skip the next line!
-                userInput.nextLine();
+                input.nextLine();
+                
             } else {
                 System.out.println("Number not entered, try again");
                 // discarded bad input
-                userInput.next();
-        
+                input.next();
+            }
+            // check valid selection
+            if (userChoice < 1 || userChoice > 2) {
+                System.out.println("Please enter number from 1 to 2.");
             }
     
             switch (userChoice) {
-                
                 case 1:
-                   
+                    System.out.println("Enter Vertex that you wanted to start: ");
+                    String inputNode = input.nextLine();
                     // Add a key
-                    if (inputVertex.contains(input.toUpperCase())) {
-        
+                    if (inputVertex.contains(inputNode.toUpperCase())) {
                         // process user input
-                        processUserInput(input.toUpperCase());
+                        processUserInput(inputNode.toUpperCase());
         
                     } else {
         
@@ -101,16 +88,19 @@ public class FinalProjectTest {
                                 + " was not found. Please try again.\n");
         
                     }
+                    displayUserMenu();
                     break;
+                    
                 case 2:
                     System.out.println("GoodBye!");
                     System.exit(0);
                     break;
             }
-        } while (true);
+            
+        } while (userChoice != 2);
     
     }
-    
+
     /**
      * Input: Node selected by the user.
      * Output: None.
