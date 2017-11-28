@@ -1,13 +1,15 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /** This is the CS526 finall project
  * Design and Implement two Heuristic Algorithms
- * 
+ *
  * Reference:
  * https://www.ibm.com/developerworks/library/j-ai-search/
  * https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
  */
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 /**
  * @author Yin Deascentis

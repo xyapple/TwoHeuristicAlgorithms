@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -6,7 +7,6 @@ public class AlgorithmTwo extends adjacencyGraph{
      * Constructor for AlgorithmTwo.
      * Input: Take user input vertex, hashmap distance and inputMap
      * Output: None.
-     *
      */
     public AlgorithmTwo(String vertex, HashMap <String, Integer> distance,
                         HashMap <String, Integer> inputMap) {

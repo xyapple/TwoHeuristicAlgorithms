@@ -1,6 +1,15 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+/** This is the CS526 finall project
+ *
+ * Design and Implement two Heuristic Algorithms
+ *
+ * Reference:
+ * https://www.ibm.com/developerworks/library/j-ai-search/
+ * https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
+ *  https://github.com/kizzlebot/Computer-Science-II/blob/master/assignment/agn1a/Graph.java
+ */
+
+
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,24 +23,13 @@ public class FinalProjectTest {
     private static HashMap <String, Integer> inputMap = new HashMap<> ();
     private static String[][] matrix = null;
     
-    static int lenghtOfArray = 0;
-    static int widthOfArray = -1;
-    
     public static void main(String[] args){
 
         // Load necessary data
-        // All data files to be found in the 'data' folder
         processFileData();
-        if (distance.isEmpty()  ||  inputMap.isEmpty()) {
         
-            System.out.println("\nPlease check data files. Not enough data to complete"
-                    + " calculations. Once files have been added, please restart the"
-                    + " program. Thank you.");
-        }
-        
-        
-   displayUserMenu();
-        
+        //display the user menu
+        displayUserMenu();
         
     
     }//end of main method
@@ -68,7 +66,7 @@ public class FinalProjectTest {
             }
             // check valid selection
             if (userChoice < 1 || userChoice > 2) {
-                System.out.println("Please enter number from 1 to 2.");
+                System.out.println("Please enter number 1 or 2.");
             }
     
             switch (userChoice) {
@@ -130,124 +128,112 @@ public class FinalProjectTest {
      * Use: Retrieves the files hard coded in the
      * function. Stores retrieved values in hashmaps.
      */
-    public static void processFileData(){
-        //create a new arraylist to store files
-       ArrayList<File> files = new ArrayList<>();
-       
-        // editable fields
-        String directDistanceFile = "direct_distance.txt";
-        String graphInputFile = "graph_input.txt";
-        
-        // end of editable fields
-        File file1 = new File(directDistanceFile);
-        File file2 = new File(graphInputFile);
-        files.add(file1);
-        files.add(file2);
-        
 
-        for (File file: files){
-            try {
-                // store direct distances in a hashmap
-                if (file.toString().contains("distance")){
-                    
-                    FileReader fr = new FileReader(file);
-                    BufferedReader br = new BufferedReader(fr);
-                    String line;
-                    
-                    while ((line = br.readLine()) != null) {
-                        
-                        StringBuilder num = new StringBuilder();
-                        StringBuilder str = new StringBuilder();
-                        
-                        for(char c : line.toCharArray()){
-                            //find the distance
-                            if(Character.isDigit(c)){
-                                num.append(c);
-                            }
-                            //find the associated letter
-                            else if(Character.isLetter(c)){
-                                str.append(c);
-                            }
-                        }
-                        
-                        // add values into hashmap
-                        distance.put(str.toString(), Integer.parseInt(num.toString()));
-                        
+    public static void processFileData(){
+        //input file names
+        String file1 = "direct_distance.txt";
+        String file2 = "graph_input.txt";
+        //file reader
+        FileReader fr1 = null;
+        FileReader fr2 = null;
+        
+        try {
+            fr1 = new FileReader(file1);
+            fr2 = new FileReader(file2);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        //use buffer reader
+        BufferedReader br1 = new BufferedReader(fr1);
+        BufferedReader br2 = new BufferedReader(fr2);
+        try {
+            String line;
+            // read one line at a time until end of file
+            // store direct distances in a hashmap
+            while ((line = br1.readLine()) != null) {
+        
+                StringBuilder num = new StringBuilder();
+                StringBuilder str = new StringBuilder();
+        
+                for(char c : line.toCharArray()){
+                    //find the distance
+                    if(Character.isDigit(c)){
+                        num.append(c);
                     }
-                    
-                    br.close(); // close the reader
-                    
-                }
-                
-                // store inputs in a
-                else if (file.toString().contains("input")){
-                    
-                    
-                    //FileReader fileReader = new FileReader(dataPath.toString() + "/" + file);
-                    FileReader fileReader = new FileReader(file);
-                    BufferedReader reader = new BufferedReader(fileReader);
-                    
-                    String line;
-                    
-                    int x=0; // keeps track of line to add
-                    
-                    
-                    while ((line = reader.readLine()) != null) {
-                        String[] values = line.split("\\s+");
-                        
-                        
-                        if (matrix == null) {
-                            //instantiate matrix
-                            matrix = new String[widthOfArray = values.length]
-                                    [lenghtOfArray = values.length];
-                        }
-                        
-                        
-                        // add values into the matrix
-                        for (int i=0; i < values.length; i++){
-                            
-                            matrix[i][x] = values[i];
-                            
-                        }
-                        
-                        x++; // next line
-                        
-                        
+                    //find the associated letter
+                    else if(Character.isLetter(c)){
+                        str.append(c);
                     }
-                    
-                    reader.close(); // close the reader
-                    
                 }
-                
-                // Store input combinations in a hashmap
-                int y=1;
-                while (y < lenghtOfArray){
-                    
-                    inputVertex.add(matrix[0][y]);
-                    
-                    for (int i=1; i < widthOfArray; i++){
-                        
-                        StringBuilder str = new StringBuilder();
-                        str.append(matrix[0][y]);
-                        str.append(matrix[i][0]);
-                        
-                        int inputValue = Integer.parseInt(matrix[i][y]);
-                        
-                        if (inputValue > 0){
-                            inputMap.put(str.toString(), inputValue);
-                        }
-                        
-                    }
-                    
-                    y++;
-                }
-                
-                
-            } catch (Exception e) {
-                System.out.println("WARNING: Please check: "+ file.toString() + ". It was not found.");
+        
+                // add values into hashmap
+                distance.put(str.toString(), Integer.parseInt(num.toString()));
+        
             }
             
+            int row = 0;
+            int column = -1;
+            int x=0; // keeps track of line to add
+            int y=1; // y is the number from that '151   0 140   0   0   0   0   0  80   0  99   0   0   0   0   0   0   0   0   0   0'
+            while ((line = br2.readLine()) != null) {
+                String[] values = line.split("\\s+");
+                
+                //instantiate matrix
+                if (matrix == null) {
+                    
+                    matrix = new String[column = values.length]
+                            [row = values.length];
+                }
+        
+                // add values into the matrix
+                for (int i=0; i < values.length; i++){
+            
+                    matrix[i][x] = values[i];
+            
+                }
+        
+                x++; // next line
+        
+        
+            }
+            while (y < row){
+                
+                inputVertex.add(matrix[0][y]);
+        
+                for (int i=1; i < column; i++){
+            
+                    StringBuilder str = new StringBuilder();
+                    str.append(matrix[0][y]);
+                    str.append(matrix[i][0]);
+            
+                    int inputValue = Integer.parseInt(matrix[i][y]);
+            
+                    if (inputValue > 0){
+                        inputMap.put(str.toString(), inputValue);
+                    }
+            
+                }
+        
+                y++;
+            }
+    
+        } catch (NumberFormatException e) {
+            System.out.println("Years in Office must be a number. ");
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fr1 != null && fr2 != null) {
+                    fr1.close();
+                    fr2.close();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        
         
     }
     
