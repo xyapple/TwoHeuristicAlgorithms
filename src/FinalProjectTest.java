@@ -7,11 +7,15 @@ import java.util.HashMap;
 
 public class FinalProjectTest {
     
-    static Scanner scanner = null;
+    
+    //Scan user input
+    private static Scanner scanner = new Scanner(System.in);
+    
     
     // Data
-    private static ArrayList<File> files = new ArrayList<>();
-    private static ArrayList<String> inputNodes = new ArrayList<>();
+
+    //arraylist to store user input
+    private static ArrayList<String> inputVertex = new ArrayList<>();
     private static HashMap <String, Integer> distance = new HashMap<> ();
     private static HashMap <String, Integer> inputMap = new HashMap<> ();
     private static String[][] matrix = null;
@@ -19,51 +23,28 @@ public class FinalProjectTest {
     static int widthOfArray = -1;
     
     public static void main(String[] args){
+ 
         // Load necessary data
         // All data files to be found in the 'data' folder
-        getInputFileData();
-    
-        //Greeting
-        System.out.println("\n\tWelcome to the Path Finding System!\n");
-        System.out.println("To exit the system please enter 'exit' anywhere.\n");
-    
-        scanner = new Scanner(System.in);
-    
-        try {
-            // initial call for menu
-            menu(scanner);
+        processFileData();
+        if (distance.isEmpty()  ||  inputMap.isEmpty()) {
         
-        } finally {
-            scanner.close();
+            System.out.println("\nPlease check data files. Not enough data to complete"
+                    + " calculations. Once files have been added, please restart the"
+                    + " program. Thank you.");
         }
+    
+/*        //Greeting
+        System.out.println("\n\tWelcome to the Path Finding System!\n");
+        System.out.println("To exit the system please enter 'exit' anywhere.\n");*/
+        displayUserMenu();
+  
+        
+        
     
     }//end of main method
     
-    /**
-     * Function: processUserInput()
-     * Input: Node selected by the user.
-     * Output: None.
-     * Use: Initializes Algorithm1 and Algorithm2.
-     * Retrieves the heuristic shortest paths.
-     * Prints respective output to the screen.
-     */
-    public static void processUserInput(String input){
-        
-        AlgorithmOne alg1 = new AlgorithmOne(input, distance, inputMap);
-        // Calculates shortest path using distance file for distance metric
-        // Prints the path nodes
-        // Prints the distance
-        alg1.getShortestDistance();
-    
-    
-        AlgorithmTwo alg2 = new AlgorithmTwo(input, distance, inputMap);
-        // Calculates shortest path using both input and distance file for distance metric
-        // Prints the path nodes
-        // Prints the distance
-        alg2.getShortestDistance();
-        
-        
-    }
+   
     
     /**
      * Function: menu()
@@ -73,58 +54,103 @@ public class FinalProjectTest {
      * for an input node. Checks for node validity.
      * Also serves as a secondary check for input files.
      */
-    public static void menu (Scanner scanner){
+    //Display user menu for user to choose
+    public static void displayUserMenu(){
+    
+    
+        // user choice for menu
+        int userChoice = 0;
+        System.out.println("1. Please enter a starting node: ");
+        System.out.println("2. Exit");
+        String userInput = null;
+        userInput.nextline();
+       
+        do {
         
-        System.out.print("Please enter a starting node: ");
+
+            // check valid selection
+            if (userChoice < 1 || userChoice > 2) {
+                System.out.println("Please enter number from 1 to 2.");
+            
+            }
+    
+            if (userInput.hasNextInt()) {
+                userChoice = userInput.nextInt();
+                // In order for user not to skip the next line!
+                userInput.nextLine();
+            } else {
+                System.out.println("Number not entered, try again");
+                // discarded bad input
+                userInput.next();
         
-        String input = scanner.nextLine();
+            }
+    
+            switch (userChoice) {
+                
+                case 1:
+                   
+                    // Add a key
+                    if (inputVertex.contains(input.toUpperCase())) {
         
+                        // process user input
+                        processUserInput(input.toUpperCase());
         
-        if (input.toLowerCase().matches("exit") ||
-                input.toLowerCase().matches("exit ") ){
-            
-            System.out.println("\nGoodbye!");
-            return; // exit
-            
-        } else if (distance.isEmpty()  ||  inputMap.isEmpty()){
-            
-            System.out.println("\nPlease check data files. Not enough data to complete"
-                    + " calculations. Once files have been added, please restart the"
-                    + " program. Thank you.");
-            return; // exit
-            
-        }
-        else if (inputNodes.contains(input.toUpperCase())) {
-            
-            // process user input
-            processUserInput(input.toUpperCase());
-            
-        } else {
-            
-            System.out.println("\nThe node you requested is not a valid start node or"
-                    + " was not found. Please try again.\n");
-            
-        }
+                    } else {
         
-        // Recursive call
-        menu(scanner);
+                        System.out.println("\nThe node you requested is not a valid start node or"
+                                + " was not found. Please try again.\n");
         
+                    }
+                    break;
+                case 2:
+                    System.out.println("GoodBye!");
+                    System.exit(0);
+                    break;
+            }
+        } while (true);
+    
     }
     
     /**
-     * Function: getInputFileData()
+     * Input: Node selected by the user.
+     * Output: None.
+     * Use: Initializes Algorithm1 and Algorithm2.
+     * Retrieves the heuristic shortest paths.
+     * Prints respective output to the screen.
+     */
+    public static void processUserInput(String input){
+        
+        AlgorithmOne algorithm1 = new AlgorithmOne(input, distance, inputMap);
+        // Calculates shortest path using distance file for distance metric
+        // Prints the path nodes
+        // Prints the distance
+        algorithm1.getShortestDistance();
+        
+        
+        AlgorithmTwo algorithm2 = new AlgorithmTwo(input, distance, inputMap);
+        // Calculates shortest path using both input and distance file for distance metric
+        // Prints the path nodes
+        // Prints the distance
+        algorithm2.getShortestDistance();
+        
+        
+    }
+    
+    /**This is a helper function
      * Input: None.
      * Output: None.
      * Use: Retrieves the files hard coded in the
      * function. Stores retrieved values in hashmaps.
      */
-    public static void getInputFileData(){
-        
+    public static void processFileData(){
+        //create a new arraylist to store files
+       ArrayList<File> files = new ArrayList<>();
+       
         // editable fields
         
         String directDistanceFile = "direct_distance.txt";
         String graphInputFile = "graph_input.txt";
-        
+
         
         // end of editable fields
         
@@ -133,8 +159,8 @@ public class FinalProjectTest {
         File file2 = new File(graphInputFile);
         files.add(file1);
         files.add(file2);
-		
         
+
         for (File file: files){
             try {
                 
@@ -144,7 +170,7 @@ public class FinalProjectTest {
                     //FileReader fileReader = new FileReader(dataPath.toString() + "/" + file);
                     FileReader fileReader = new FileReader(file);
                     BufferedReader reader = new BufferedReader(fileReader);
-                    String line = null;
+                    String line;
                     
                     while ((line = reader.readLine()) != null) {
                         
@@ -181,7 +207,7 @@ public class FinalProjectTest {
                     FileReader fileReader = new FileReader(file);
                     BufferedReader reader = new BufferedReader(fileReader);
                     
-                    String line = null;
+                    String line;
                     
                     int x=0; // keeps track of line to add
                     
@@ -213,13 +239,11 @@ public class FinalProjectTest {
                     
                 }
                 
-                
-                
                 // Store input combinations in a hashmap
                 int y=1;
                 while (y < lenghtOfArray){
                     
-                    inputNodes.add(matrix[0][y]);
+                    inputVertex.add(matrix[0][y]);
                     
                     for (int i=1; i < widthOfArray; i++){
                         
