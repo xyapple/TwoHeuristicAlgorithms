@@ -4,8 +4,9 @@
  * Design and Implement two Heuristic Algorithms
  * Author: Yin Deascentis
  * <p>
- * Reference:
+ * Code Reference:
  * https://www.ibm.com/developerworks/library/j-ai-search/
+ * https://github.com/alesiaaa/CS566/tree/master/HeuristicPathFinder
  * https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
  * https://github.com/kizzlebot/Computer-Science-II/blob/master/assignment/agn1a/Graph.java
  */
@@ -89,16 +90,16 @@ public class AlgorithmOne extends adjacencyGraph {
         // if returned set is null (dead end) back track
         else if (vertexSet == null && !vertex.equals("Z")) {
             
-            // remove last added node from the final path
+            // remove last added vertex from the final path
             this.pathWithBackTrack.remove(lastVertexToAdd);
             
-            // update last added node
+            // update last added vertex
             this.lastVertexToAdd = pathWithBackTrack.get(pathWithBackTrack.size() - 1);
             
             // update the complete sequence path
             this.pathNoBackTrack.add(lastVertexToAdd);
             
-            // subtract last added node from distance
+            // subtract last added vertex from distance
             shortestDistance -= inputMap.get(finalVertexSet);
             
         } //end of else if
@@ -108,12 +109,12 @@ public class AlgorithmOne extends adjacencyGraph {
             // record the complete set
             finalVertexSet = vertexSet;
             
-            // record only the last node
-            char currentSet[] = vertexSet.toCharArray();
+            // record only the last vertex
+            char[] currentSet = vertexSet.toCharArray();
             lastVertexToAdd = Character.toString(currentSet[1]);
             
             
-            // add visited nodes to the banned list
+            // add visited nodes to the used list
             // this serves as a check for future search
             for (char c : currentSet) {
                 if (!this.pathUsedList.contains(Character.toString(c))) {
@@ -129,7 +130,7 @@ public class AlgorithmOne extends adjacencyGraph {
                 pathWithBackTrack.add(lastVertexToAdd);
             }
             
-            //and add to complete path sequence of visited nodes
+            //and add to complete path sequence of visited vertices
             if (!pathNoBackTrack.isEmpty()) {
                 pathNoBackTrack.add(lastVertexToAdd);
             } else {

@@ -4,9 +4,10 @@
  * Design and Implement two Heuristic Algorithms
  * Author: Yin Deascentis
  * <p>
- * Reference:
+ * Code Reference:
  * https://www.ibm.com/developerworks/library/j-ai-search/
  * https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
+ * https://github.com/alesiaaa/CS566/tree/master/HeuristicPathFinder
  * https://github.com/kizzlebot/Computer-Science-II/blob/master/assignment/agn1a/Graph.java
  */
 
@@ -31,8 +32,9 @@ public class AlgorithmTwo extends adjacencyGraph {
     /**
      * String of the vertex that is adjacent to specified input vertex with the
      * shortest distance (from direct distance file only).
-     * eg:A: dd(A) = 380; B: dd(C) = 366, I: dd(I) = 193, K: dd(K) = 176.
-     *  then K is selected
+     * eg:A: w(J, A) + dd(A) = 151 + 380 = 531; C: w(J, C) + dd(C) = 140 + 366 = 506
+     * I: w(J, I) + dd(I) = 80 + 193 = 273; K: w(J, K) + dd(K) = 99 + 176 = 275
+     *  then I is selected
      */
     private String getShortestSetAlgTwo(String vertex) {
         //this adjacent list is the one that get from the getAdjacentSet() method

@@ -3,9 +3,10 @@
  * Design and Implement two Heuristic Algorithms
  * Author: Yin Deascentis
  *
- * Reference:
+ * Code Reference:
  * https://www.ibm.com/developerworks/library/j-ai-search/
  * https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
+ * https://github.com/alesiaaa/CS566/tree/master/HeuristicPathFinder
  * https://github.com/kizzlebot/Computer-Science-II/blob/master/assignment/agn1a/Graph.java
  */
 
@@ -27,7 +28,7 @@ public class adjacencyGraph {
 	public HashMap <String, Integer> distance; //this is the distance which read from the "direct_distance.txt"
 	public HashMap <String, Integer> inputMap; //this is the weight which read from the "graph_input.txt"
 	
-	public String finalVertexSet; //this store all the vertices (vertex along the path) in the Set structure
+	public String finalVertexSet; //this store all the vertices (vertex along the path) in the
 	public String lastVertexToAdd; //this is the last vertex to be added
 	
 	public ArrayList <String> pathWithBackTrack = new ArrayList <>(); //Path that has dead end and duplicate vertices

@@ -4,9 +4,10 @@
  * Design and Implement two Heuristic Algorithms
  * Author: Yin Deascentis
  * <p>
- * Reference:
+ * Code Reference:
  * https://www.ibm.com/developerworks/library/j-ai-search/
  * https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
+ * https://github.com/alesiaaa/CS566/tree/master/HeuristicPathFinder
  * https://github.com/kizzlebot/Computer-Science-II/blob/master/assignment/agn1a/Graph.java
  */
 
@@ -30,7 +31,7 @@ public class FinalProjectTest {
     
     public static void main(String[] args) {
         
-        // Load necessary data
+        // Load and process necessary data
         processFileData();
         
         //display the user menu
@@ -39,16 +40,7 @@ public class FinalProjectTest {
         
     }//end of main method
     
-    
-    /**
-     * Function: menu()
-     * Input: Scanner object for retrieving user input.
-     * Output: None.
-     * Use: Recursive function that prompts the user
-     * for an input node. Checks for node validity.
-     * Also serves as a secondary check for input files.
-     */
-    //Display user menu for user to choose
+    //Display menu for user to choose
     public static void displayUserMenu() {
         
         // user choice for menu
@@ -102,35 +94,22 @@ public class FinalProjectTest {
     }
     
     /**
-     * Input: Node selected by the user.
-     * Output: None.
-     * Use: Initializes Algorithm1 and Algorithm2.
-     * Retrieves the heuristic shortest paths.
-     * Prints respective output to the screen.
+     *The method will process the user input
      */
     public static void processUserInput(String input) {
         
+        //initialize Algorithm1
         AlgorithmOne algorithm1 = new AlgorithmOne(input, distance, inputMap);
-        // Calculates shortest path using distance file for distance metric
-        // Prints the path nodes
-        // Prints the distance
         algorithm1.getShortestDistance();
         
-        
+        //initialize Algorithm2
         AlgorithmTwo algorithm2 = new AlgorithmTwo(input, distance, inputMap);
-        // Calculates shortest path using both input and distance file for distance metric
-        // Prints the path nodes
-        // Prints the distance
         algorithm2.getShortestDistance();
         
         
     }
     
     /**This is a helper function
-     * Input: None.
-     * Output: None.
-     * Use: Retrieves the files hard coded in the
-     * function. Stores retrieved values in hashmaps.
      */
     
     public static void processFileData() {
