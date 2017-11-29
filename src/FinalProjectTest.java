@@ -1,8 +1,9 @@
-/** This is the CS526 finall project
- *
+/**
+ * This is the CS526 finall project
+ * <p>
  * Design and Implement two Heuristic Algorithms
  * Author: Yin Deascentis
- *
+ * <p>
  * Reference:
  * https://www.ibm.com/developerworks/library/j-ai-search/
  * https://www.cs.princeton.edu/~rs/AlgsDS07/15ShortestPaths.pdf
@@ -10,32 +11,34 @@
  */
 
 
-import java.io.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class FinalProjectTest {
     //user input
     private static Scanner input = new Scanner(System.in);
     //arraylist to store user input
     private static ArrayList<String> inputVertex = new ArrayList<>();
-    private static HashMap <String, Integer> distance = new HashMap<> ();
-    private static HashMap <String, Integer> inputMap = new HashMap<> ();
+    private static HashMap<String, Integer> distance = new HashMap<>();
+    private static HashMap<String, Integer> inputMap = new HashMap<>();
     private static String[][] matrix = null;
     
-    public static void main(String[] args){
-
+    public static void main(String[] args) {
+        
         // Load necessary data
         processFileData();
         
         //display the user menu
         displayUserMenu();
         
-    
+        
     }//end of main method
     
-   
     
     /**
      * Function: menu()
@@ -46,7 +49,7 @@ public class FinalProjectTest {
      * Also serves as a secondary check for input files.
      */
     //Display user menu for user to choose
-    public static void displayUserMenu(){
+    public static void displayUserMenu() {
         
         // user choice for menu
         int userChoice = 0;
@@ -69,7 +72,7 @@ public class FinalProjectTest {
             if (userChoice < 1 || userChoice > 2) {
                 System.out.println("Please enter number 1 or 2.");
             }
-    
+            
             switch (userChoice) {
                 case 1:
                     System.out.println("Enter Vertex that you wanted to start: ");
@@ -78,16 +81,16 @@ public class FinalProjectTest {
                     if (inputVertex.contains(inputNode.toUpperCase())) {
                         // process user input
                         processUserInput(inputNode.toUpperCase());
-        
+                        
                     } else {
-        
+                        
                         System.out.println("\nThe node you requested is not a valid start node or"
                                 + " was not found. Please try again.\n");
-        
+                        
                     }
                     displayUserMenu();
                     break;
-                    
+                
                 case 2:
                     System.out.println("GoodBye!");
                     System.exit(0);
@@ -95,9 +98,9 @@ public class FinalProjectTest {
             }
             
         } while (userChoice != 2);
-    
+        
     }
-
+    
     /**
      * Input: Node selected by the user.
      * Output: None.
@@ -105,7 +108,7 @@ public class FinalProjectTest {
      * Retrieves the heuristic shortest paths.
      * Prints respective output to the screen.
      */
-    public static void processUserInput(String input){
+    public static void processUserInput(String input) {
         
         AlgorithmOne algorithm1 = new AlgorithmOne(input, distance, inputMap);
         // Calculates shortest path using distance file for distance metric
@@ -129,8 +132,8 @@ public class FinalProjectTest {
      * Use: Retrieves the files hard coded in the
      * function. Stores retrieved values in hashmaps.
      */
-
-    public static void processFileData(){
+    
+    public static void processFileData() {
         //input file names
         String file1 = "direct_distance.txt";
         String file2 = "graph_input.txt";
@@ -152,30 +155,30 @@ public class FinalProjectTest {
             // read one line at a time until end of file
             // store direct distances in a hashmap
             while ((line = br1.readLine()) != null) {
-        
+                
                 StringBuilder num = new StringBuilder();
                 StringBuilder str = new StringBuilder();
-        
-                for(char c : line.toCharArray()){
+                
+                for (char c : line.toCharArray()) {
                     //find the distance
-                    if(Character.isDigit(c)){
+                    if (Character.isDigit(c)) {
                         num.append(c);
                     }
                     //find the associated letter
-                    else if(Character.isLetter(c)){
+                    else if (Character.isLetter(c)) {
                         str.append(c);
                     }
                 }
-        
+                
                 // add values into hashmap
                 distance.put(str.toString(), Integer.parseInt(num.toString()));
-        
+                
             }
             
             int row = 0;
             int column = -1;
-            int x=0; // keeps track of line to add
-            int y=1; // y is the number from that '151   0 140   0   0   0   0   0  80   0  99   0   0   0   0   0   0   0   0   0   0'
+            int x = 0; // keeps track of line to add
+            int y = 1; // y is the number from that '151   0 140   0   0   0   0   0  80   0  99   0   0   0   0   0   0   0   0   0   0'
             while ((line = br2.readLine()) != null) {
                 String[] values = line.split("\\s+");
                 
@@ -185,39 +188,39 @@ public class FinalProjectTest {
                     matrix = new String[column = values.length]
                             [row = values.length];
                 }
-        
+                
                 // add values into the matrix
-                for (int i=0; i < values.length; i++){
-            
+                for (int i = 0; i < values.length; i++) {
+                    
                     matrix[i][x] = values[i];
-            
+                    
                 }
-        
+                
                 x++; // next line
-        
-        
+                
+                
             }
-            while (y < row){
+            while (y < row) {
                 
                 inputVertex.add(matrix[0][y]);
-        
-                for (int i=1; i < column; i++){
-            
+                
+                for (int i = 1; i < column; i++) {
+                    
                     StringBuilder str = new StringBuilder();
                     str.append(matrix[0][y]);
                     str.append(matrix[i][0]);
-            
+                    
                     int inputValue = Integer.parseInt(matrix[i][y]);
-            
-                    if (inputValue > 0){
+                    
+                    if (inputValue > 0) {
                         inputMap.put(str.toString(), inputValue);
                     }
-            
+                    
                 }
-        
+                
                 y++;
             }
-    
+            
         } catch (NumberFormatException e) {
             System.out.println("Years in Office must be a number. ");
             e.printStackTrace();
@@ -229,7 +232,7 @@ public class FinalProjectTest {
                     fr1.close();
                     fr2.close();
                 }
-
+                
             } catch (IOException e) {
                 e.printStackTrace();
             }
