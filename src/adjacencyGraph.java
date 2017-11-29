@@ -36,23 +36,11 @@ public class adjacencyGraph {
 	public int shortestDistance = 0; //this is the calculation of the path
 	
 	/*
+	 * Constructor
 	 */
 	public adjacencyGraph(){
 	   
     }
-    
-	
-	
-    /** setter
-     * Input: Starting node.
-     * Output: None.
-     * Use: Setter for the starting node.
-     */
-    public void setStartingNode(String vertex){
-        this.vertex = vertex;
-    }
-    
-    
     
 	/**
 	 * ArrayList of vertices adjacent to the input node. 
