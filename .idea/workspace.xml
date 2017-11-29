@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb1beba7-3cda-44d6-b320-638915447b70" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmOne.java" afterPath="$PROJECT_DIR$/src/AlgorithmOne.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmTwo.java" afterPath="$PROJECT_DIR$/src/AlgorithmTwo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FinalProjectTest.java" afterPath="$PROJECT_DIR$/src/FinalProjectTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/adjacencyGraph.java" afterPath="$PROJECT_DIR$/src/adjacencyGraph.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/FinalProjectTest.class" afterPath="$PROJECT_DIR$/bin/FinalProjectTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +18,7 @@
       <file leaf-file-name="FinalProjectTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FinalProjectTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
+            <state relative-caret-position="-399">
               <caret line="123" column="32" lean-forward="false" selection-start-line="123" selection-start-column="22" selection-end-line="123" selection-end-column="32" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -290,9 +288,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="697" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="805" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -463,7 +462,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="718" height="900" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="805" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -934,7 +933,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FinalProjectTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
+        <state relative-caret-position="-399">
           <caret line="123" column="32" lean-forward="false" selection-start-line="123" selection-start-column="22" selection-end-line="123" selection-end-column="32" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
