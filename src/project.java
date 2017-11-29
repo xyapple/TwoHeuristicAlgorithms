@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class FinalProjectTest {
+public class project {
     //user input
     private static Scanner input = new Scanner(System.in);
     //arraylist to store user input
@@ -94,7 +94,7 @@ public class FinalProjectTest {
     }
     
     /**
-     *The method will process the user input
+     * The method will process the user input
      */
     public static void processUserInput(String input) {
         
@@ -109,7 +109,8 @@ public class FinalProjectTest {
         
     }
     
-    /**This is a helper function
+    /**
+     * This is a helper function
      */
     
     public static void processFileData() {
