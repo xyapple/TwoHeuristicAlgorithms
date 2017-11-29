@@ -43,7 +43,7 @@ public class adjacencyGraph {
     }
     
 	/**
-	 * ArrayList of vertices adjacent to the input node. 
+	 * ArrayList of vertices adjacent to the input vertex.
 	 * 
 	 * eg: Adjacent nodes: A, C, I, K
 	 */
@@ -72,7 +72,7 @@ public class adjacencyGraph {
 	
 	
 	/**This is going to print out what the Path node
-	 * Input: ArrayList of a nodes.
+	 * Input: ArrayList of a vertices.
 	 * Output: Formated string of a path sequence.
 	 * Use: Retrieve string representation of
 	 * a path sequence.
